@@ -1,0 +1,135 @@
+.header__wrapper {
+  width: 100%;
+}
+
+.header {
+  max-width: 1440px;
+  height: 80px;
+  margin: 0 auto 80px;
+  padding: 0 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__element {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.left {
+  justify-content: start;
+}
+
+.center {
+  justify-content: center;
+}
+
+.right {
+  justify-content: end;
+}
+
+.header__category {
+  border: 0;
+  background: none;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 120%;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  padding: 0 16px;
+  text-decoration: none;
+  color: var(--c-black);
+}
+
+.header__category::after {
+  content: "";
+  position: absolute;
+  top: 50px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: transparent;
+  transition: all 0.1s linear;
+}
+.header__category:hover::after {
+  background-color: var(--c-primary);
+}
+
+.cart__button {
+  cursor: pointer;
+}
+
+.currency__wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  margin-right: 22px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.caret {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-180deg);
+  transition: var(--transition-time);
+}
+
+.currency__wrapper.open .caret {
+  transform: rotate(0deg);
+}
+
+.currency {
+  padding: 0 10px;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 160%;
+}
+
+.currency__modal {
+  position: absolute;
+  width: 114px;
+  display: none;
+  top: 100%;
+  left: -50%;
+  flex-direction: column;
+  box-shadow: var(--button-box-shadow);
+  z-index: 100;
+}
+
+.currency__wrapper.open .currency__modal {
+  display: flex;
+}
+
+.currency__choice {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 160%;
+  padding: 10px 0 10px 20px;
+  color: var(--c-black);
+  background-color: white;
+  transition: var(--transition-time);
+}
+
+.currency__choice:first-child {
+  padding-top: 20px;
+}
+.currency__choice:last-child {
+  padding-bottom: 20px;
+}
+
+.currency__choice:hover {
+  background-color: #fafafa;
+}

@@ -1,0 +1,210 @@
+.product__container__wrapper {
+  width: 100%;
+}
+.product__container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 100px;
+}
+
+.product {
+  display: flex;
+}
+
+.product__images {
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 40px;
+}
+
+.product__images__image {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  margin-bottom: 40px;
+  cursor: pointer;
+  -webkit-filter: brightness(1);
+  filter: brightness(1);
+  transition: var(--transition-time);
+}
+
+.product__images__image:hover {
+  -webkit-filter: brightness(1.1);
+  filter: brightness(1.1);
+}
+
+.product__images__image img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.product__column__images__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  position: relative;
+}
+
+.product__big__image {
+  position: relative;
+  height: 560px;
+  flex: 1;
+}
+
+.product__big__image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.product__details__container {
+  margin-left: 100px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.product__brand {
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 27px;
+  margin-bottom: 16px;
+  color: var(--c-black);
+}
+
+.product__name {
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 27px;
+  margin-bottom: 40px;
+  color: var(--c-black);
+}
+
+.product__attributes {
+  margin-bottom: 40px;
+}
+
+.product__attribute__name {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: var(--c-black);
+}
+
+.product__attribute__items {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 12px 12px;
+  margin-bottom: 16px;
+}
+
+.product__attribute__item__text {
+  width: 63px;
+  height: 45px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 16px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #292929;
+  border: 1px solid #292929;
+  cursor: pointer;
+  transition: var(--transition-time);
+  outline: 1px solid transparent;
+}
+
+.product__attribute__item__text.selected {
+  outline: 1px solid #292929;
+}
+
+.product__attribute__item__text:hover {
+  color: #fff;
+  background-color: #292929;
+  outline: 1px solid #292929;
+}
+
+.product__attribute_item__swatch {
+  width: 63px;
+  height: 45px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 16px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #292929;
+  border: 1px solid #292929;
+  cursor: pointer;
+  transition: var(--transition-time);
+  outline: 1px solid transparent;
+}
+
+.product__attribute_item__swatch.selected {
+  outline: 1px solid #292929;
+}
+
+.product__attribute_item__swatch:hover {
+  outline: 1px solid #292929;
+}
+
+.product__price {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.produc__price__price {
+  font-weight: 700;
+  font-family: "Raleway", sans-serif;
+  font-size: 24px;
+  line-height: 18px;
+  color: var(--c-black);
+}
+
+.product__addToCart {
+  background-color: var(--c-primary);
+  color: white;
+  text-transform: uppercase;
+  display: flex;
+  width: 100%;
+  padding: 16px 32px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin-bottom: 40px;
+  box-shadow: 0px 4px 11px 0px transparent;
+  transition: var(--transition-time);
+}
+
+.product__addToCart:hover {
+  box-shadow: var(--button-box-shadow);
+}
+
+.product__description {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 159.96%;
+  color: var(--c-black);
+}
