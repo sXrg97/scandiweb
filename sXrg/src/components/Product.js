@@ -18,6 +18,13 @@ class Product extends React.Component {
       this.setState({
         currentImage: res.data.product.gallery[0],
       });
+      //
+
+      this.props.product.productData.data.product.attributes.map((attr) =>
+        this.setState({ [attr.id]: attr.items[0].id })
+      );
+
+      //
     });
   }
 
@@ -74,6 +81,7 @@ class Product extends React.Component {
                   this.props.product.productData.data.product.name}
               </h2>
               <div className="product__attributes">
+                {console.log(this.props.product)}
                 {this.props.product.gotProductData &&
                   this.props.product.productData.data.product.attributes.map(
                     (attribute) => (
@@ -91,11 +99,19 @@ class Product extends React.Component {
                           >
                             {attribute.items.map((item) => (
                               <div
-                                className="product__attribute__item__text"
+                                className={`product__attribute__item__text ${
+                                  this.state[attribute.id] === item.id
+                                    ? "selected"
+                                    : ""
+                                }`}
                                 key={item.id}
                                 title={item.displayValue}
+                                onClick={() =>
+                                  this.setState({ [attribute.id]: item.id })
+                                }
                               >
                                 {item.value}
+                                {console.log("item.id:", item.id)}
                               </div>
                             ))}
                           </div>
@@ -106,7 +122,14 @@ class Product extends React.Component {
                           >
                             {attribute.items.map((item) => (
                               <div
-                                className="product__attribute_item__swatch"
+                                className={`product__attribute_item__swatch ${
+                                  this.state[attribute.id] === item.id
+                                    ? "selected"
+                                    : ""
+                                }`}
+                                onClick={() =>
+                                  this.setState({ [attribute.id]: item.id })
+                                }
                                 key={"item_" + item.id}
                                 title={item.displayValue}
                                 style={{ backgroundColor: item.value }}
@@ -146,6 +169,7 @@ class Product extends React.Component {
             </div>
           </div>
         </div>
+        {console.log("STATE IS: ", this.state)}
       </div>
     );
   }

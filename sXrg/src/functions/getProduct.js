@@ -32,7 +32,6 @@ const getProduct = async (productId) => {
         }),
       });
       const res = await data.json();
-      console.log("product is", res);
       return res;
     }
   } catch (err) {

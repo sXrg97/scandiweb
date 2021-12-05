@@ -3,12 +3,13 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Category from "./components/Category";
 import Header from "./components/Header";
 import Product from "./components/Product";
+import "./App.css";
 
 class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="App">
+        <div className="app">
           <Header />
           <Routes>
             <Route path="/" element={<Navigate replace to="/category/all" />} />

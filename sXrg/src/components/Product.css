@@ -131,6 +131,8 @@
 
 .product__attribute__item__text.selected {
   outline: 1px solid #292929;
+  color: #fff;
+  background-color: #292929;
 }
 
 .product__attribute__item__text:hover {

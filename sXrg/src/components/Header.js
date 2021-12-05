@@ -106,7 +106,6 @@ class Header extends React.Component {
                   ))}
               </div>
             </div>
-            {console.log("state", this.state)}
             <CartSVG fill="#43464e" />
           </div>
         </div>
