@@ -13,7 +13,8 @@
 }
 
 .products {
-  margin: 80px 100px;
+  margin: 80px 100px 0;
+  padding-bottom: 100px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 100px 40px;

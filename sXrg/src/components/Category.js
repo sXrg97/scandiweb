@@ -104,7 +104,7 @@ class Category extends React.Component {
                           product.inStock ? "" : "notInStock"
                         }`}
                       >
-                        {product.name}
+                        {product.brand} {product.name}
                       </div>
                       <div
                         className={`category__product__price ${

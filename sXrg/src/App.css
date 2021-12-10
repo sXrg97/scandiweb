@@ -1,4 +1,5 @@
 .app {
-	background-color: white;
-	position: relative;
+  background-color: white;
+  position: relative;
+  min-height: 100vh;
 }

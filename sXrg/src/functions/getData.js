@@ -12,6 +12,7 @@ const getData = async (query) => {
     products {
       id
       name
+      brand
       inStock
       prices {
         currency
@@ -39,6 +40,7 @@ const getData = async (query) => {
     products {
       id
       name
+      brand
       inStock
       prices {
         currency
