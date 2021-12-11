@@ -11,6 +11,8 @@ import {
 	toggleCurrency,
 	toggleCartModal,
 	closeCartModal,
+	addCart,
+	removeCart,
 } from "../reducers/productActions";
 import { ReactComponent as CaretUp } from "../img/caret-up.svg";
 import currencySymbolGetter from "../functions/currencySymbolGetter";
@@ -163,14 +165,34 @@ class Header extends React.Component {
 													<div className="cartModal__singleItem__details__attributes"></div>
 												</div>
 												<div className="cartModal__singleItem__amount">
-													<div className="button">
+													<div
+														className="button"
+														onClick={() => {
+															this.props.dispatch(
+																addCart({
+																	name: variant.name,
+																	attributes: variant.attributes,
+																})
+															);
+														}}
+													>
 														<div className="minus"></div>
 														<div className="plus"></div>
 													</div>
 													<div className="text text_weight_500">
 														{variant.amount}
 													</div>
-													<div className="button">
+													<div
+														className="button"
+														onClick={() => {
+															this.props.dispatch(
+																removeCart({
+																	name: variant.name,
+																	attributes: variant.attributes,
+																})
+															);
+														}}
+													>
 														<div className="minus"></div>
 													</div>
 												</div>

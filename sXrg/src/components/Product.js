@@ -215,19 +215,6 @@ class Product extends React.Component {
 								className="product__addToCart"
 								onClick={() => {
 									this.props.dispatch(
-										//leaving this here for the laughs... me trying for 3hrs to pass the props as an object instead of just passing the props.
-										//guess I won't ever be confused about how redux works so it's a win in my book
-										// addCart({
-										// 	[this.props.product.productData.data.product.name]: {
-										//     ...attributes,
-										// 		attributes: [
-										// 			{
-										// 				variant: { ...this.state.attributes },
-										// 				amount: 1,
-										// 			},
-										// 		],
-										// 	},
-										// })
 										removeCart({
 											name: this.state.name,
 											attributes: this.state.attributes,

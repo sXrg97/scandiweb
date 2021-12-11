@@ -215,7 +215,7 @@
 	top: 80px;
 	height: 200px;
 	width: 1440px;
-	background-color: pink;
+	background-color: white;
 	z-index: 1002;
 	align-self: center;
 }
@@ -247,13 +247,13 @@
 .cartModal__items__container {
 	height: 310px;
 	overflow-y: scroll;
-	background-color: green;
+	background-color: white;
 }
 
 .cartModal__singleItem__container {
 	height: 135px;
 	display: flex;
-	background-color: pink;
+	background-color: white;
 	margin-bottom: 40px;
 }
 
@@ -267,7 +267,7 @@
 
 .cartModal__singleItem__details {
 	height: 100%;
-	background-color: yellow;
+	background-color: white;
 	display: flex;
 	flex-direction: column;
 	flex: 1;
@@ -276,7 +276,7 @@
 
 .cartModal__singleItem__amount {
 	height: 100%;
-	background-color: salmon;
+	background-color: white;
 	margin-right: 10px;
 	width: 24px;
 	display: flex;

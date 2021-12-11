@@ -60,7 +60,7 @@ const cart = (
 			}
 		case removeFromCart:
 			//Check if the product to be added to the cart is already existing in the cart with the same attributes
-			state.list.variants.map((variant, idx) => {
+			state.list.variants.map((variant) => {
 				if (variant) {
 					if (
 						isEqual(variant.name, action.payload.name) &&
@@ -68,8 +68,10 @@ const cart = (
 					) {
 						variant.amount--; //if found decrease the amount
 						if (variant.amount <= 0) {
-							console.error("delete", idx);
-							delete state.list.variants[idx];
+							const result = state.list.variants.filter(
+								(variant) => variant.amount > 0
+							);
+							state.list.variants = result;
 						}
 					}
 				}
