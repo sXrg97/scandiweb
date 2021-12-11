@@ -10,9 +10,10 @@ import "./Product.css";
 class Product extends React.Component {
 	state = {
 		currentImage: null,
-		attributes: {},
+		attributes: [],
 		name: null,
 		prices: {},
+		type: [],
 	};
 
 	async componentDidMount() {
@@ -30,6 +31,7 @@ class Product extends React.Component {
 						...prevState.attributes,
 						[attr.name]: attr.items[0].id,
 					},
+					type: [...prevState.type, { [attr.name]: attr.type }],
 				}))
 			);
 			console.log(

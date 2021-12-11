@@ -141,8 +141,11 @@ class Header extends React.Component {
 									</div>
 									<div className="cartModal__items__container">
 										{console.log("carttttt", this.props.cart)}
-										{this.props.cart.list.variants.map((variant) => (
-											<div className="cartModal__singleItem__container">
+										{this.props.cart.list.variants.map((variant, idx) => (
+											<div
+												key={idx}
+												className="cartModal__singleItem__container"
+											>
 												<div className="cartModal__singleItem__details">
 													<div className="cartModal__singleItem__details__brandAndName text text_weight_300">
 														<span>{variant.brand}</span>
@@ -150,7 +153,7 @@ class Header extends React.Component {
 														<span>{variant.name}</span>
 													</div>
 													<div className="cartModal__singleItem__details__price">
-														<span class="text text_weight_500">
+														<span className="text text_weight_500">
 															{currencySymbolGetter(
 																this.props.currency.selectedCurrency
 															)}
