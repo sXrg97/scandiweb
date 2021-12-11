@@ -12,6 +12,7 @@ class Product extends React.Component {
 		currentImage: null,
 		attributes: {},
 		name: null,
+		prices: {},
 	};
 
 	async componentDidMount() {
@@ -31,6 +32,13 @@ class Product extends React.Component {
 					},
 				}))
 			);
+			console.log(
+				"LOOK HERE",
+				this.props.product.productData.data.product.prices
+			);
+			this.setState({
+				prices: this.props.product.productData.data.product.prices,
+			});
 		});
 	}
 
@@ -193,6 +201,10 @@ class Product extends React.Component {
 										addCart({
 											name: this.state.name,
 											attributes: this.state.attributes,
+											prices: this.state.prices,
+											images:
+												this.props.product.productData.data.product.gallery,
+											brand: this.props.product.productData.data.product.brand,
 										})
 									);
 								}}

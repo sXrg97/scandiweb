@@ -49,6 +49,9 @@ const cart = (
 							{
 								name: action.payload.name,
 								attributes: action.payload.attributes,
+								prices: action.payload.prices,
+								brand: action.payload.brand,
+								images: action.payload.images,
 								amount: 1,
 							},
 						],
