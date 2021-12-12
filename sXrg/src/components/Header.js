@@ -165,7 +165,12 @@ class Header extends React.Component {
 															)}
 														</span>
 													</div>
-													<div className="cartModal__singleItem__details__attributes"></div>
+													<div className="cartModal__singleItem__details__attributes">
+														{/* {variant.attributes.map((attr) => (
+															<div>{attr.name}</div>
+														))} */}
+														{console.log(variant.attributes)}
+													</div>
 												</div>
 												<div className="cartModal__singleItem__amount">
 													<div

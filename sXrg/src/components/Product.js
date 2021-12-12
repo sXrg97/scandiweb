@@ -27,11 +27,14 @@ class Product extends React.Component {
 			this.props.product.productData.data.product.attributes.map((attr) =>
 				this.setState((prevState) => ({
 					name: this.props.product.productData.data.product.name,
-					attributes: {
+					attributes: [
 						...prevState.attributes,
-						[attr.name]: attr.items[0].id,
-					},
-					type: [...prevState.type, { [attr.name]: attr.type }],
+						{
+							name: attr.name,
+							id: attr.items[0].id,
+							type: attr.type,
+						},
+					],
 				}))
 			);
 			console.log(
@@ -115,12 +118,10 @@ class Product extends React.Component {
 													>
 														{attribute.items.map((item) => (
 															<div
-																className={`product__attribute__item__text ${
-																	this.state.attributes[attribute.id] ===
-																	item.id
-																		? "selected"
-																		: ""
-																}`}
+																className={`product__attribute__item__text ${this.state.attributes.map(
+																	(attr) =>
+																		attr.id === item.id ? "selected" : ""
+																)}`}
 																key={item.id}
 																title={item.displayValue}
 																onClick={() =>
@@ -143,24 +144,25 @@ class Product extends React.Component {
 													>
 														{attribute.items.map((item) => (
 															<div
-																className={`product__attribute_item__swatch ${
-																	this.state.attributes[attribute.id] ===
-																	item.id
-																		? "selected"
-																		: ""
-																}`}
-																onClick={() =>
-																	this.setState((prevState) => ({
-																		attributes: {
-																			...prevState.attributes,
-																			[attribute.id]: item.id,
-																		},
-																	}))
-																}
+																className={`product__attribute_item__swatch  ${this.state.attributes.map(
+																	(attr) =>
+																		attr.id === item.id ? "selected" : ""
+																)}`}
+																onClick={() => {
+																	this.state.attributes.map((attr) =>
+																		attr.name === item.name
+																			? (attr.id = item.id)
+																			: ""
+																	);
+																}}
 																key={"item_" + item.id}
 																title={item.displayValue}
 																style={{ backgroundColor: item.value }}
-															></div>
+															>
+																{this.state.attributes.map((attr) =>
+																	console.error(attr.id)
+																)}
+															</div>
 														))}
 													</div>
 												) : (
