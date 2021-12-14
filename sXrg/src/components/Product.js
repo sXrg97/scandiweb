@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import currencySymbolGetter from "../functions/currencySymbolGetter";
 import getProduct from "../functions/getProduct";
+import getSelected from "../functions/getSelected";
 import { mapStateToProps } from "../functions/mapStateToProps";
 import { withParams } from "../functions/withParams";
 import { addCart, removeCart, setProd } from "../reducers/productActions";
@@ -13,7 +14,6 @@ class Product extends React.Component {
 		attributes: [],
 		name: null,
 		prices: {},
-		type: [],
 	};
 
 	async componentDidMount() {
@@ -30,16 +30,14 @@ class Product extends React.Component {
 					attributes: [
 						...prevState.attributes,
 						{
-							name: attr.name,
-							id: attr.items[0].id,
-							type: attr.type,
+							id: attr.id,
+							attribs: {
+								id: attr.items[0].id,
+								type: attr.type,
+							},
 						},
 					],
 				}))
-			);
-			console.log(
-				"LOOK HERE",
-				this.props.product.productData.data.product.prices
 			);
 			this.setState({
 				prices: this.props.product.productData.data.product.prices,
@@ -100,7 +98,6 @@ class Product extends React.Component {
 									this.props.product.productData.data.product.name}
 							</h2>
 							<div className="product__attributes">
-								{console.log(this.props.product)}
 								{this.props.product.gotProductData &&
 									this.props.product.productData.data.product.attributes.map(
 										(attribute) => (
@@ -117,24 +114,34 @@ class Product extends React.Component {
 														key={"text_" + attribute.id}
 													>
 														{attribute.items.map((item) => (
-															<div
-																className={`product__attribute__item__text ${this.state.attributes.map(
-																	(attr) =>
-																		attr.id === item.id ? "selected" : ""
-																)}`}
-																key={item.id}
-																title={item.displayValue}
-																onClick={() =>
-																	this.setState((prevState) => ({
-																		attributes: {
-																			...prevState.attributes,
-																			[attribute.id]: item.id,
-																		},
-																	}))
-																}
-															>
-																{item.value}
-															</div>
+															<>
+																<div
+																	className={`product__attribute__item__text ${getSelected(
+																		item,
+																		this.state.attributes,
+																		attribute
+																	)}`}
+																	key={item.id}
+																	title={item.displayValue}
+																	onClick={() => {
+																		this.setState((prevState) => ({
+																			...prevState,
+																			attributes: [
+																				...prevState.attributes,
+																				{
+																					id: attribute.id,
+																					attribs: {
+																						id: item.id,
+																						type: attribute.type,
+																					},
+																				},
+																			],
+																		}));
+																	}}
+																>
+																	{item.value}
+																</div>
+															</>
 														))}
 													</div>
 												) : attribute.type === "swatch" ? (
@@ -144,25 +151,27 @@ class Product extends React.Component {
 													>
 														{attribute.items.map((item) => (
 															<div
-																className={`product__attribute_item__swatch  ${this.state.attributes.map(
-																	(attr) =>
-																		attr.id === item.id ? "selected" : ""
+																className={`product__attribute_item__swatch ${getSelected(
+																	item,
+																	this.state.attributes,
+																	attribute
 																)}`}
-																onClick={() => {
-																	this.state.attributes.map((attr) =>
-																		attr.name === item.name
-																			? (attr.id = item.id)
-																			: ""
-																	);
-																}}
+																onClick={() =>
+																	this.setState((prevState) => ({
+																		...prevState,
+																		attributes: [
+																			{
+																				name: attribute.name,
+																				id: item.id,
+																				type: attribute.type,
+																			},
+																		],
+																	}))
+																}
 																key={"item_" + item.id}
 																title={item.displayValue}
 																style={{ backgroundColor: item.value }}
-															>
-																{this.state.attributes.map((attr) =>
-																	console.error(attr.id)
-																)}
-															</div>
+															></div>
 														))}
 													</div>
 												) : (
@@ -226,7 +235,7 @@ class Product extends React.Component {
 									);
 								}}
 							>
-								Remove From Cart{console.log(this.props.cart)}
+								Remove From Cart
 							</div>
 							{this.props.product.gotProductData && (
 								<div
@@ -240,7 +249,6 @@ class Product extends React.Component {
 						</div>
 					</div>
 				</div>
-				{console.log("cart is", this.props.cart)}
 				{console.log("state is", this.state)}
 			</div>
 		);
