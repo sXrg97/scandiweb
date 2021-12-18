@@ -167,22 +167,26 @@ class Header extends React.Component {
                           </div>
                           <div className="cartModal__singleItem__details__attributes">
                             {variant.attributes.map((variant_attr) => {
+                              console.error("alo", variant_attr);
                               switch (variant_attr.attribs.type) {
                                 case "text":
                                   return (
-                                    <div
-                                      title={variant_attr.id}
-                                      className={`button ${
-                                        variant_attr.attribs.value.length < 3
-                                          ? "attr_button"
-                                          : variant_attr.attribs.value.length <
-                                            4
-                                          ? "attr_button__medium"
-                                          : "attr_button__large"
-                                      }`}
-                                    >
-                                      {variant_attr.attribs.value}
-                                    </div>
+                                    variant_attr.attribs && (
+                                      <div
+                                        title={variant_attr.id}
+                                        className={`button ${
+                                          variant_attr.attribs.displayValue
+                                            .length < 3
+                                            ? "attr_button"
+                                            : variant_attr.attribs.displayValue
+                                                .length < 4
+                                            ? "attr_button__medium"
+                                            : "attr_button__large"
+                                        }`}
+                                      >
+                                        {variant_attr.attribs.displayValue}
+                                      </div>
+                                    )
                                   );
                                 case "swatch":
                                   return (
