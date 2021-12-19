@@ -1,11 +1,11 @@
 const getProduct = async (productId) => {
-  try {
-    if (productId) {
-      const data = await fetch("http://192.168.100.2:4000", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          query: `
+	try {
+		if (productId) {
+			const data = await fetch("http://localhost:4000", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					query: `
 {
   product(id: "${productId}"){
     name
@@ -29,14 +29,14 @@ const getProduct = async (productId) => {
   }
 }
 `,
-        }),
-      });
-      const res = await data.json();
-      return res;
-    }
-  } catch (err) {
-    console.error(err);
-  }
+				}),
+			});
+			const res = await data.json();
+			return res;
+		}
+	} catch (err) {
+		console.error(err);
+	}
 };
 
 export default getProduct;
