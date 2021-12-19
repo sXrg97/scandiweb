@@ -16,6 +16,7 @@ import {
 } from "../reducers/productActions";
 import { ReactComponent as CaretUp } from "../img/caret-up.svg";
 import currencySymbolGetter from "../functions/currencySymbolGetter";
+import Variant from "./Variant";
 
 class Header extends React.Component {
   constructor(props) {
@@ -23,7 +24,6 @@ class Header extends React.Component {
     this.state = {
       gotData: false,
       data: [],
-      total: 0,
     };
   }
 
@@ -36,7 +36,7 @@ class Header extends React.Component {
     currencies
   }
   `;
-    fetch("http://localhost:4000/", {
+    fetch("http://192.168.100.2:4000/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query: DATA }),
@@ -124,7 +124,8 @@ class Header extends React.Component {
                 <div className="cartSVGwrapper">
                   <CartSVG fill="#43464e" />
                   <div className="cartItemsNumber">
-                    {this.props.cart.list.variants.length}
+                    {this.props.cart.list.variants &&
+                      this.props.cart.list.variants.length}
                   </div>
                 </div>
               </div>
@@ -133,118 +134,19 @@ class Header extends React.Component {
                   <div className="cartModal__info">
                     My bag,{" "}
                     <span className="cartModal__info__items">
-                      {this.props.cart.list.variants.length}{" "}
-                      {this.props.cart.list.variants.length === 1
+                      {this.props.cart.list.variants &&
+                        this.props.cart.list.variants.length}{" "}
+                      {this.props.cart.list.variants &&
+                      this.props.cart.list.variants.length === 1
                         ? "item"
                         : "items"}
                     </span>
                   </div>
                   <div className="cartModal__items__container">
-                    {console.log("carttttt", this.props.cart)}
-                    {this.props.cart.list.variants.map((variant, idx) => (
-                      <div
-                        key={idx}
-                        className="cartModal__singleItem__container"
-                      >
-                        <div className="cartModal__singleItem__details">
-                          <div className="cartModal__singleItem__details__brandAndName text text_weight_300">
-                            <span>{variant.brand}</span>
-                            <br />
-                            <span>{variant.name}</span>
-                          </div>
-                          <div className="cartModal__singleItem__details__price">
-                            <span className="text text_weight_500">
-                              {currencySymbolGetter(
-                                this.props.currency.selectedCurrency
-                              )}
-                              {variant.prices.map((price) =>
-                                price.currency ===
-                                this.props.currency.selectedCurrency
-                                  ? (price.amount * variant.amount).toFixed(2)
-                                  : ""
-                              )}
-                            </span>
-                          </div>
-                          <div className="cartModal__singleItem__details__attributes">
-                            {variant.attributes.map((variant_attr) => {
-                              console.error("alo", variant_attr);
-                              switch (variant_attr.attribs.type) {
-                                case "text":
-                                  return (
-                                    variant_attr.attribs && (
-                                      <div
-                                        title={variant_attr.id}
-                                        className={`button ${
-                                          variant_attr.attribs.displayValue
-                                            .length < 3
-                                            ? "attr_button"
-                                            : variant_attr.attribs.displayValue
-                                                .length < 4
-                                            ? "attr_button__medium"
-                                            : "attr_button__large"
-                                        }`}
-                                      >
-                                        {variant_attr.attribs.displayValue}
-                                      </div>
-                                    )
-                                  );
-                                case "swatch":
-                                  return (
-                                    <div
-                                      className="button attr_button swatch"
-                                      style={{
-                                        backgroundColor:
-                                          variant_attr.attribs.value,
-                                      }}
-                                    ></div>
-                                  );
-                                default:
-                                  <div></div>;
-                              }
-                            })}
-                          </div>
-                        </div>
-                        <div className="cartModal__singleItem__amount">
-                          <div
-                            className="button"
-                            onClick={() => {
-                              this.props.dispatch(
-                                addCart({
-                                  name: variant.name,
-                                  attributes: variant.attributes,
-                                })
-                              );
-                            }}
-                          >
-                            <div className="minus"></div>
-                            <div className="plus"></div>
-                          </div>
-                          <div className="text text_weight_500">
-                            {variant.amount}
-                          </div>
-                          <div
-                            className="button"
-                            onClick={() => {
-                              this.props.dispatch(
-                                removeCart({
-                                  name: variant.name,
-                                  attributes: variant.attributes,
-                                })
-                              );
-                            }}
-                          >
-                            <div className="minus"></div>
-                          </div>
-                        </div>
-                        <div className="cartModal__singleItem__images">
-                          <img
-                            className="cartModal__singleItem__img"
-                            src={variant.images[0]}
-                            alt={variant.name}
-                          />
-                        </div>
-                      </div>
-                    ))}
+                    {this.props.cart.list.variants &&
+                      this.props.cart.list.variants.map((variant, idx) => (
+                        <Variant variant={variant} idx={idx} />
+                      ))}
                   </div>
                   <div className="cartModal__singleItem__total">
                     <span className="total_text text_weight_500">Total</span>
@@ -252,34 +154,22 @@ class Header extends React.Component {
                       {currencySymbolGetter(
                         this.props.currency.selectedCurrency
                       )}
-                      {this.props.cart.list.variants
-                        .reduce((prevValue, currentValue) => {
-                          let x = currentValue.prices.find(
-                            (price) =>
-                              this.props.currency.selectedCurrency ===
-                              price.currency
-                          );
-                          return prevValue + x.amount * currentValue.amount;
-                        }, 0)
-                        .toFixed(2)}
-                      {/* {this.props.cart.list.variants.reduce(
-												(prevValue = 0, currentValue) => {
-													currentValue.prices.map((price) => {
-														if (
-															price.currency ===
-															this.props.currency.selectedCurrency
-														) {
-															console.error(
-																prevValue + price.amount * currentValue.amount
-															);
-															return (
-																prevValue + price.amount * currentValue.amount
-															);
-														}
-													});
-												},
-												0
-											)} */}
+                      {this.props.cart.list.variants &&
+                        this.props.cart.list.variants
+                          .reduce((prevValue, currentValue) => {
+                            let priceInSelectedCurrency =
+                              currentValue.prices.find(
+                                (price) =>
+                                  this.props.currency.selectedCurrency ===
+                                  price.currency
+                              );
+                            return (
+                              prevValue +
+                              priceInSelectedCurrency.amount *
+                                currentValue.amount
+                            );
+                          }, 0)
+                          .toFixed(2)}
                     </span>
                   </div>
                 </div>

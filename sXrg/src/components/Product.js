@@ -1,3 +1,4 @@
+import { isEqual } from "lodash";
 import React from "react";
 import { connect } from "react-redux";
 import currencySymbolGetter from "../functions/currencySymbolGetter";
@@ -129,11 +130,13 @@ class Product extends React.Component {
                                   key={item.id}
                                   title={item.displayValue}
                                   onClick={() => {
-                                    let prevAttributes = this.state.attributes;
-                                    let newAttributes = prevAttributes.filter(
-                                      (attr) => attr.id !== attribute.id
+                                    let prevAttributes = [
+                                      ...this.state.attributes,
+                                    ];
+                                    let idx = prevAttributes.findIndex(
+                                      (attr) => attr.id === attribute.id
                                     );
-                                    newAttributes.push({
+                                    prevAttributes.splice(idx, 1, {
                                       id: attribute.id,
                                       attribs: {
                                         id: item.id,
@@ -141,11 +144,32 @@ class Product extends React.Component {
                                         displayValue: item.displayValue,
                                       },
                                     });
+
                                     this.setState((prevState) => ({
                                       ...prevState,
-                                      attributes: newAttributes,
+                                      attributes: prevAttributes,
                                     }));
                                   }}
+                                  // onClick={() => {
+                                  //   let prevAttributes = [
+                                  //     ...this.state.attributes,
+                                  //   ];
+                                  //   let newAttributes = prevAttributes.filter(
+                                  //     (attr) => attr.id !== attribute.id
+                                  //   );
+                                  //   newAttributes.push({
+                                  //     id: attribute.id,
+                                  //     attribs: {
+                                  //       id: item.id,
+                                  //       type: attribute.type,
+                                  //       displayValue: item.displayValue,
+                                  //     },
+                                  //   });
+                                  //   this.setState((prevState) => ({
+                                  //     ...prevState,
+                                  //     attributes: newAttributes,
+                                  //   }));
+                                  // }}
                                 >
                                   {item.value}
                                 </div>
@@ -168,11 +192,13 @@ class Product extends React.Component {
                                   )
                                   .join("")}`}
                                 onClick={() => {
-                                  let prevAttributes = this.state.attributes;
-                                  let newAttributes = prevAttributes.filter(
-                                    (attr) => attr.id !== attribute.id
+                                  let newAttributes = [
+                                    ...this.state.attributes,
+                                  ];
+                                  let idx = newAttributes.findIndex(
+                                    (attr) => attr.id === attribute.id
                                   );
-                                  newAttributes.push({
+                                  newAttributes.splice(idx, 1, {
                                     id: attribute.id,
                                     attribs: {
                                       id: item.id,
@@ -247,6 +273,12 @@ class Product extends React.Component {
               <div
                 className="product__addToCart"
                 onClick={() => {
+                  console.error(
+                    "name",
+                    this.state.name,
+                    "attr",
+                    this.state.attributes
+                  );
                   this.props.dispatch(
                     removeCart({
                       name: this.state.name,

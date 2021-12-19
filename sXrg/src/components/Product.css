@@ -127,6 +127,10 @@
   cursor: pointer;
   transition: var(--transition-time);
   outline: 1px solid transparent;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .product__attribute__item__text.selected {

@@ -18,20 +18,6 @@ class Category extends React.Component {
     };
   }
 
-  // getData = () => {
-  //   fetch("http://localhost:4000/", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({ query: queryCategory }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       //set data in redux
-  //       this.props.dispatch(set({ gotData: true, data: data }));
-  //     })
-  //     .catch((err) => console.error("Error: ", err));
-  // };
-
   handleResize() {
     document
       .querySelectorAll(".category__product__img img")
@@ -58,38 +44,10 @@ class Category extends React.Component {
       });
     }
 
-    // this.props.products.data.data.category.products.map((product) => {
-    //   product.attributes.map((attr) =>
-    //     this.setState((prevState) => ({
-    //       params: prevState.params,
-    //       attributes: [
-    //         ...prevState.attributes,
-    //         {
-    //           [product.name]: {
-    //             attributes: {
-    //               id: attr.id,
-    //               attribs: {
-    //                 id: attr.items[0].id,
-    //                 type: attr.type,
-    //                 displayValue: attr.items[0].displayValue,
-    //                 value: attr.items[0].value,
-    //               },
-    //             },
-    //           },
-    //         },
-    //       ],
-    //     }))
-    //   );
-    // });
-
     getData(this.props.params.category).then((data) => {
       if (this.props.params.category !== prevProps.params.category)
         this.props.dispatch(set({ gotData: true, data: data }));
     });
-
-    // if (this.props.products.data !== prevProps.products.data) {
-    //   this.props.dispatch(set({ gotData: true, data: data }));
-    // }
     this.handleResize();
   }
 
