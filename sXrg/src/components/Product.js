@@ -116,7 +116,7 @@ class Product extends React.Component {
 														className="product__attribute__items"
 														key={"text_" + attribute.id}
 													>
-														{attribute.items.map((item, currentItemId) => (
+														{attribute.items.map((item) => (
 															<>
 																<div
 																	className={`product__attribute__item__text ${this.state.attributes
@@ -130,49 +130,39 @@ class Product extends React.Component {
 																	key={item.id}
 																	title={item.displayValue}
 																	onClick={() => {
-																		let newAttr = this.state.attributes.find(
-																			(eachAttr) => eachAttr.id === attribute.id
-																		);
-																		newAttr.attribs = {
-																			id: attribute.items[currentItemId].id,
-																			type: attribute.type,
-																			displayValue:
-																				attribute.items[currentItemId]
-																					.displayValue,
-																			value:
-																				attribute.items[currentItemId].value,
-																		};
 																		let idx = this.state.attributes.findIndex(
-																			(attr) => isEqual(attr, newAttr)
+																			(indexAttr) =>
+																				indexAttr.id === attribute.id
 																		);
-																		let newAttributeList =
-																			this.state.attributes;
-																		newAttributeList.splice(idx, 1, newAttr);
+																		console.log(idx);
+																		let copy = {
+																			id: this.state.attributes[idx].id,
+																			attribs: {
+																				id: this.state.attributes[idx].attribs
+																					.id,
+																				displayValue:
+																					this.state.attributes[idx].attribs
+																						.displayValue,
+																				value:
+																					this.state.attributes[idx].attribs
+																						.value,
+																				type: this.state.attributes[idx].attribs
+																					.type,
+																			},
+																		};
+																		copy.attribs = {
+																			id: item.id,
+																			displayValue: item.displayValue,
+																			value: item.value,
+																			type: attribute.type,
+																		};
+																		let stateCopy = [...this.state.attributes];
+																		stateCopy.splice(idx, 1, copy);
 																		this.setState((prevState) => ({
 																			...prevState,
-																			attributes: newAttributeList,
+																			attributes: stateCopy,
 																		}));
 																	}}
-																	// onClick={() => {
-																	//   let prevAttributes = [
-																	//     ...this.state.attributes,
-																	//   ];
-																	//   let newAttributes = prevAttributes.filter(
-																	//     (attr) => attr.id !== attribute.id
-																	//   );
-																	//   newAttributes.push({
-																	//     id: attribute.id,
-																	//     attribs: {
-																	//       id: item.id,
-																	//       type: attribute.type,
-																	//       displayValue: item.displayValue,
-																	//     },
-																	//   });
-																	//   this.setState((prevState) => ({
-																	//     ...prevState,
-																	//     attributes: newAttributes,
-																	//   }));
-																	// }}
 																>
 																	{item.value}
 																</div>
@@ -195,25 +185,35 @@ class Product extends React.Component {
 																	)
 																	.join("")}`}
 																onClick={() => {
-																	let newAttr = this.state.attributes.find(
-																		(eachAttr) => eachAttr.id === attribute.id
-																	);
-																	newAttr.attribs = {
-																		id: attribute.items[currentItemId].id,
-																		type: attribute.type,
-																		displayValue:
-																			attribute.items[currentItemId]
-																				.displayValue,
-																		value: attribute.items[currentItemId].value,
-																	};
 																	let idx = this.state.attributes.findIndex(
-																		(attr) => isEqual(attr, newAttr)
+																		(indexAttr) => indexAttr.id === attribute.id
 																	);
-																	let newAttributeList = this.state.attributes;
-																	newAttributeList.splice(idx, 1, newAttr);
+																	console.log(idx);
+																	let copy = {
+																		id: this.state.attributes[idx].id,
+																		attribs: {
+																			id: this.state.attributes[idx].attribs.id,
+																			displayValue:
+																				this.state.attributes[idx].attribs
+																					.displayValue,
+																			value:
+																				this.state.attributes[idx].attribs
+																					.value,
+																			type: this.state.attributes[idx].attribs
+																				.type,
+																		},
+																	};
+																	copy.attribs = {
+																		id: item.id,
+																		displayValue: item.displayValue,
+																		value: item.value,
+																		type: attribute.type,
+																	};
+																	let stateCopy = [...this.state.attributes];
+																	stateCopy.splice(idx, 1, copy);
 																	this.setState((prevState) => ({
 																		...prevState,
-																		attributes: newAttributeList,
+																		attributes: stateCopy,
 																	}));
 																}}
 																key={"item_" + item.id}
@@ -305,7 +305,7 @@ class Product extends React.Component {
 						</div>
 					</div>
 				</div>
-				{console.log("state is", this.state.attributes)}
+				{console.log("state is", this.state)}
 			</div>
 		);
 	}
