@@ -75,7 +75,7 @@ const cart = (
 					if (
 						isEqual(variant.name, action.payload.name) &&
 						isEqual(variant.attributes, action.payload.attributes)
-						// variant.attributes[0].attribs.id ===
+						//  && variant.attributes[0].attribs.id ===
 						// 	action.payload.attributes[0].attribs.id
 					) {
 						newVariant = { ...variant };
