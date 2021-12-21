@@ -13,10 +13,12 @@ import {
 	closeCartModal,
 	addCart,
 	removeCart,
+	closeCurrModal,
 } from "../reducers/productActions";
 import { ReactComponent as CaretUp } from "../img/caret-up.svg";
 import currencySymbolGetter from "../functions/currencySymbolGetter";
 import Variant from "./Variant";
+import { closeCurrencyModal } from "../reducers/actionNames";
 
 class Header extends React.Component {
 	constructor(props) {
@@ -89,6 +91,7 @@ class Header extends React.Component {
 							<div
 								onClick={() => {
 									this.props.dispatch(toggleCurrency({}));
+									this.props.dispatch(closeCartModal());
 								}}
 								className={`currency__wrapper ${
 									this.props.currency.isCurrencyModalOpen ? "open" : ""
@@ -119,6 +122,7 @@ class Header extends React.Component {
 								className="cart"
 								onClick={() => {
 									this.props.dispatch(toggleCartModal());
+									this.props.dispatch(closeCurrModal());
 								}}
 							>
 								<div className="cartSVGwrapper">
