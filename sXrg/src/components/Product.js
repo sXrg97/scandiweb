@@ -268,6 +268,8 @@ class Product extends React.Component {
                       images:
                         this.props.product.productData.data.product.gallery,
                       brand: this.props.product.productData.data.product.brand,
+                      allAttributes:
+                        this.props.product.productData.data.product.attributes,
                     })
                   );
                 }}

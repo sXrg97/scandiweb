@@ -94,6 +94,7 @@ class Category extends React.Component {
                           prices: product.prices,
                           images: product.gallery,
                           brand: product.brand,
+                          allAttributes: product.attributes,
                         })
                       );
                     }}

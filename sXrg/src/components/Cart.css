@@ -88,6 +88,10 @@
 
 .cart__item__details__attributes {
   display: flex;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .cart__item__details__attribute {
@@ -97,6 +101,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 16px !important;
 }
 
 .cart__item__details__attribute:not(:last-child) {
@@ -106,4 +111,13 @@
 .cart__item__photos {
   height: 185px;
   width: 141px;
+  position: relative;
+}
+
+.cart__item__photos img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
 }

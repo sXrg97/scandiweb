@@ -11,6 +11,14 @@
   line-height: 160%;
 }
 
+.source__sans__font {
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 160%;
+}
+
 .text_weight_300 {
   font-weight: 300;
 }

@@ -19,9 +19,9 @@ class Cart extends React.Component {
                     <div className="cart__item__details__brand text text_weight_600">
                       {variant.brand}
                     </div>
-                  </div>
-                  <div className="cart__item__details__name text">
-                    {variant.name}
+                    <div className="cart__item__details__name text">
+                      {variant.name}
+                    </div>
                   </div>
                   <div className="cart__item__details__price text text_weight_700">
                     {currencySymbolGetter(this.props.currency.selectedCurrency)}
@@ -37,7 +37,7 @@ class Cart extends React.Component {
                         return (
                           <div
                             title={attr.id}
-                            className="cart__item__details__attribute"
+                            className="cart__item__details__attribute source__sans__font"
                           >
                             {attr.attribs.value}
                           </div>
@@ -62,7 +62,10 @@ class Cart extends React.Component {
                   </div>
                 </div>
                 <div className="cart__item__buttons"></div>
-                <div className="cart__item__photos">a</div>
+                <div className="cart__item__photos">
+                  {console.log(variant)}
+                  <img src={variant.images[0]} alt={variant.name} />
+                </div>
               </div>
             ))}
           </div>
