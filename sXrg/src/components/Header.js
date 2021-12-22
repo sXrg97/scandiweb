@@ -11,14 +11,11 @@ import {
   toggleCurrency,
   toggleCartModal,
   closeCartModal,
-  addCart,
-  removeCart,
   closeCurrModal,
 } from "../reducers/productActions";
 import { ReactComponent as CaretUp } from "../img/caret-up.svg";
 import currencySymbolGetter from "../functions/currencySymbolGetter";
 import Variant from "./Variant";
-import { closeCurrencyModal } from "../reducers/actionNames";
 
 class Header extends React.Component {
   constructor(props) {

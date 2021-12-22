@@ -1,4 +1,3 @@
-import { isEqual } from "lodash";
 import React from "react";
 import { connect } from "react-redux";
 import currencySymbolGetter from "../functions/currencySymbolGetter";
