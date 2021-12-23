@@ -279,12 +279,6 @@ class Product extends React.Component {
 							<div
 								className="product__addToCart"
 								onClick={() => {
-									console.error(
-										"name",
-										this.state.name,
-										"attr",
-										this.state.attributes
-									);
 									this.props.dispatch(
 										removeCart({
 											name: this.state.name,
