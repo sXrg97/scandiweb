@@ -8,6 +8,7 @@ import {
 	toggleCart,
 	closeCart,
 	closeCurrencyModal,
+	updateImage,
 } from "./actionNames";
 
 export const set = (data) => {
@@ -64,5 +65,11 @@ export const closeCartModal = () => {
 export const closeCurrModal = () => {
 	return {
 		type: closeCurrencyModal,
+	};
+};
+export const updateIMG = (data) => {
+	return {
+		type: updateImage,
+		payload: data,
 	};
 };

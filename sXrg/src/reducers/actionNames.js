@@ -8,3 +8,4 @@ export const removeFromCart = "REMOVE_FROM_CART";
 export const clearCart = "CLEAR_CART";
 export const toggleCart = "TOGGLE_CART";
 export const closeCart = "CLOSE_CART";
+export const updateImage = "UPDATE_IMAGE";
