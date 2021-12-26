@@ -138,6 +138,7 @@ class Category extends React.Component {
 							);
 						})}
 				</div>
+				{console.log("category", this.props)}
 			</div>
 		);
 	}

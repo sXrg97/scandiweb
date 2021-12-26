@@ -5,7 +5,7 @@ import { mapStateToProps } from "../functions/mapStateToProps";
 import { withParams } from "../functions/withParams";
 import { ReactComponent as CaretLeft } from "../img/caret-left.svg";
 import { ReactComponent as CaretRight } from "../img/caret-right.svg";
-import { updateIMG } from "../reducers/productActions";
+import { addCart, removeCart, updateIMG } from "../reducers/productActions";
 import "./Cart.css";
 
 class Cart extends React.Component {
@@ -91,7 +91,38 @@ class Cart extends React.Component {
 										})}
 									</div>
 								</div>
-								<div className="cart__item__buttons"></div>
+								<div className="cart__buttons">
+									<div
+										className="button cart_button"
+										onClick={() => {
+											this.props.dispatch(
+												addCart({
+													name: variant.name,
+													attributes: variant.attributes,
+												})
+											);
+										}}
+									>
+										<div className="minus cart_minus"></div>
+										<div className="plus cart_plus"></div>
+									</div>
+									<div className="text text_weight_500 text_cart">
+										{variant.amount}
+									</div>
+									<div
+										className="button cart_button"
+										onClick={() => {
+											this.props.dispatch(
+												removeCart({
+													name: variant.name,
+													attributes: variant.attributes,
+												})
+											);
+										}}
+									>
+										<div className="minus cart_minus"></div>
+									</div>
+								</div>
 								<div className="cart__item__photos">
 									<img
 										src={variant.images[variant.selectedImage]}
@@ -156,13 +187,6 @@ class Cart extends React.Component {
 							</div>
 						))}
 					</div>
-					<button
-						onClick={() => {
-							console.log(this.state);
-						}}
-					>
-						state
-					</button>
 				</div>
 			</>
 		);

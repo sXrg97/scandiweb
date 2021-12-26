@@ -6,6 +6,17 @@ import { withParams } from "../functions/withParams";
 import { addCart, removeCart } from "../reducers/productActions";
 
 class Variant extends react.Component {
+	state = {
+		currentImage: 0,
+	};
+
+	handleError = (currentImage) => {
+		if (currentImage < this.props.variant.images.length)
+			this.setState({
+				currentImage: currentImage + 1,
+			});
+	};
+
 	render() {
 		return (
 			<div key={this.props.idx} className="cartModal__singleItem__container">
@@ -97,8 +108,14 @@ class Variant extends react.Component {
 				<div className="cartModal__singleItem__images">
 					<img
 						className="cartModal__singleItem__img"
-						src={this.props.variant.images[0]}
+						src={this.props.variant.images[this.state.currentImage]}
 						alt={this.props.variant.name}
+						onError={() => {
+							if (this.state.currentImage < this.props.variant.images.length)
+								this.setState({
+									currentImage: this.state.currentImage + 1,
+								});
+						}}
 					/>
 				</div>
 			</div>

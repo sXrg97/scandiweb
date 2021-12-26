@@ -63,8 +63,13 @@ class Header extends React.Component {
 							<Link
 								to={"/category/all"}
 								key={"all"}
-								className={"header__category"}
+								className={`header__category ${
+									this.props.location.pathname === "/category/all"
+										? "selected"
+										: ""
+								}`}
 							>
+								{console.log("header", this.props)}
 								All
 							</Link>
 							{this.state.gotData ? (
@@ -72,7 +77,12 @@ class Header extends React.Component {
 									<Link
 										to={"category/" + category.name}
 										key={category.name}
-										className="header__category"
+										className={`header__category ${
+											this.props.location.pathname ===
+											`/category/${category.name}`
+												? "selected"
+												: ""
+										}`}
 									>
 										{category.name}
 									</Link>
@@ -178,12 +188,21 @@ class Header extends React.Component {
 										</span>
 									</div>
 									<div className="cartModal__buttons">
-										<Link to={"/cart"} className="cartModal__button text bag">
+										<Link
+											to={"/cart"}
+											className="cartModal__button text bag"
+											onClick={() => {
+												this.props.dispatch(closeCartModal());
+											}}
+										>
 											View bag
 										</Link>
 										<Link
 											to={"/checkout"}
 											className="cartModal__button text checkout"
+											onClick={() => {
+												this.props.dispatch(closeCartModal());
+											}}
 										>
 											Check out
 										</Link>
