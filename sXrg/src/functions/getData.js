@@ -1,11 +1,11 @@
 const getData = async (query) => {
-	try {
-		if (query && query !== "all") {
-			const data = await fetch("http://localhost:4000", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({
-					query: `
+  try {
+    if (query && query !== "all") {
+      const data = await fetch("http://localhost:4000", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          query: `
 {
     category(input: {title: "${query}"}){
     name
@@ -34,16 +34,16 @@ const getData = async (query) => {
   }
 }
 `,
-				}),
-			});
-			const res = await data.json();
-			return res;
-		} else {
-			const data = await fetch("http://localhost:4000", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({
-					query: `
+        }),
+      });
+      const res = await data.json();
+      return res;
+    } else {
+      const data = await fetch("http://localhost:4000", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          query: `
 {
   	category{
     name
@@ -72,13 +72,13 @@ const getData = async (query) => {
   }
 }
 `,
-				}),
-			});
-			const res = await data.json();
-			return res;
-		}
-	} catch (error) {
-		console.error(error);
-	}
+        }),
+      });
+      const res = await data.json();
+      return res;
+    }
+  } catch (error) {
+    console.error(error);
+  }
 };
 export default getData;
