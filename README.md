@@ -1,6 +1,6 @@
 # scandiweb
 
-This is my take on Scandiweb's Junior React position. The endpoint is 100% created by the Scandiweb team. All my work resides in the /sxrg folder where I used a combination of create-react-app, css, redux, and other technologies to replicate their figma design and implement the requested functionalities (rendering by category, product page, cart modal and cart page, variant selection, currency selector, add to cart buttons and +/- buttons on the cart itself, and others...
+This is my take on Scandiweb's Junior React position. The endpoint is 100% created by the Scandiweb team. All my work resides in the /sxrg folder where I used a combination of React.js, CSS, Redux, and other technologies to replicate their figma design and implement the requested functionalities (rendering by category, product page, cart modal and cart page, variant selection, currency selector, add to cart buttons and +/- buttons on the cart itself, and others...
 
 
 [Task list](https://www.notion.so/Entry-React-developer-TEST-39f601f8aa3f48ac88c4a8fefda304c1)
